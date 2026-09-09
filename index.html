@@ -111,8 +111,95 @@
 .sound-bank-notes button:active{transform:translateY(1px)}
 .audio-fast-badge{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;color:var(--muted);margin-left:6px}
 
+
+/* ===== ACADEMIA 4.0 — LIÇÕES MAIS DIDÁTICAS E LONGAS ===== */
+.game-stage{max-width:1180px;margin:0 auto;padding:22px 26px}
+.game-question{font-size:1.08rem;line-height:1.65}
+.game-question h1,.game-question h2{line-height:1.15;letter-spacing:-.02em}
+.game-question h1{font-size:clamp(2rem,4vw,3.35rem);margin:14px 0}
+.game-question h2{font-size:clamp(1.7rem,3vw,2.55rem);margin:12px 0}
+.game-question p{font-size:1.08rem;max-width:880px;margin-left:auto;margin-right:auto}
+.lesson-focus{max-width:900px;margin:18px auto;padding:17px 19px;border:1px solid #c99a35;border-radius:14px;background:#211d14;text-align:left}
+.lesson-focus strong{font-size:1.08rem}
+.natural-order{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:22px auto}
+.natural-note{min-width:82px;padding:14px 12px;border-radius:13px;background:#262b33;border:1px solid #424b58;text-align:center;font-weight:850;font-size:1.18rem}
+.natural-note small{display:block;color:var(--muted);font-size:.7rem;font-weight:600;margin-top:3px}
+.order-arrow{color:#d6a640;font-size:1.3rem;font-weight:900}
+.lesson-progress{max-width:760px;margin:10px auto 18px;color:var(--muted);font-size:.8rem;text-align:center}
+.lesson-progress-bar{height:7px;background:#101216;border-radius:999px;overflow:hidden;margin-top:6px}
+.lesson-progress-bar>i{display:block;height:100%;background:#d2a53e;border-radius:999px}
+.choice-grid button{font-size:1rem;padding:13px 14px}
+.lesson-tip{max-width:880px;margin:12px auto;padding:12px 14px;background:#181c22;border-radius:10px;color:var(--muted);font-size:.9rem}
+@media(max-width:700px){.game-stage{padding:16px 12px}.natural-note{min-width:62px;font-size:1rem;padding:11px 8px}.game-question p{font-size:1rem}}
+
+
+/* ===== ACADEMIA 4.1 — CAMADAS PEDAGÓGICAS ===== */
+.academy-prefs{max-width:920px;margin:14px auto 22px;padding:16px 18px;border:1px solid #343b46;border-radius:15px;background:#171b21}
+.academy-prefs-title{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.duration-pills{display:flex;gap:8px;flex-wrap:wrap}
+.duration-pills button{width:auto;min-width:145px;padding:11px 14px}
+.duration-pills button.active{border-color:#d6a640;box-shadow:0 0 0 2px #d6a64044;background:#262116}
+.duration-help{font-size:.82rem;color:var(--muted);margin-top:9px;line-height:1.45}
+.lesson-roadmap{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:10px auto 20px;max-width:850px}
+.lesson-roadmap span{padding:6px 9px;border-radius:999px;background:#171b21;border:1px solid #343b46;color:var(--muted);font-size:.72rem;font-weight:750}
+.lesson-roadmap span.on{color:#f0c765;border-color:#9b7930;background:#262116}
+.deepen-box{max-width:900px;margin:18px auto;text-align:left}
+.deepen-box details{border:1px solid #39414d;border-radius:13px;background:#15191f;overflow:hidden}
+.deepen-box summary{cursor:pointer;padding:14px 16px;font-weight:850;color:#e7c36b}
+.deepen-box .deep-body{padding:0 16px 16px;line-height:1.65;color:#d8dde5}
+.exercise-command{font-size:clamp(1.7rem,3.4vw,2.6rem)!important;line-height:1.2!important;margin:14px auto!important;max-width:780px!important}
+.exercise-context{font-size:.88rem!important;color:var(--muted);margin:5px auto 12px!important}
+.no-score-note{font-size:.76rem;color:var(--muted);margin-top:8px}
+.mini-check{max-width:760px;margin:15px auto;padding:14px;border-radius:12px;background:#171b21;border:1px solid #343b46;text-align:left}
+@media(max-width:700px){.duration-pills button{flex:1;min-width:100px}.academy-prefs{padding:13px}.lesson-roadmap{gap:5px}.lesson-roadmap span{font-size:.65rem}}
+
+
+/* ===== FERRAMENTA DE MEMORIZAÇÃO DO BRAÇO ===== */
+.memory-tool{max-width:1180px;margin:0 auto;padding:22px}
+.memory-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0}
+.memory-toolbar select,.memory-toolbar button{width:auto}
+.memory-cheat{margin:14px 0;padding:13px 15px;border:1px dashed #5b6572;border-radius:12px;background:#161a20}
+.memory-cheat.hidden{display:none}
+.memory-fretboard-wrap{overflow-x:auto;padding-bottom:8px}
+.memory-fretboard{min-width:980px;border-radius:16px;background:#211a13;padding:18px 14px;border:1px solid #3c3328}
+.memory-string{display:grid;grid-template-columns:72px repeat(13,1fr);align-items:center;position:relative}
+.memory-string+.memory-string{margin-top:8px}
+.memory-string::after{content:"";position:absolute;left:72px;right:0;height:2px;background:#c8c8c8;opacity:.78;z-index:0}
+.memory-string:nth-child(1)::after{height:1px}
+.memory-string:nth-child(6)::after{height:3px}
+.memory-string-label{font-size:.8rem;color:#d5d9df;font-weight:800;padding-right:8px;z-index:2}
+.memory-cell{height:48px;position:relative;z-index:1;display:flex;align-items:center;justify-content:center;border-left:1px solid #75624d}
+.memory-cell.fret0{border-left:none}
+.memory-note-input{width:42px;height:34px;border-radius:9px;border:1px solid #566171;background:#11151a;color:#f5f7fa;text-align:center;font-weight:850;font-size:.9rem;text-transform:none;padding:0}
+.memory-note-input:focus{outline:2px solid #d6a640;border-color:#d6a640}
+.memory-note-input.ok{border-color:#4aa96c;background:#16271d}
+.memory-note-input.bad{border-color:#c95d5d;background:#2a1717}
+.memory-fret-nums{display:grid;grid-template-columns:72px repeat(13,1fr);margin-top:8px;color:#aeb5bf;font-size:.72rem;text-align:center}
+.memory-status{margin:14px 0;padding:12px 14px;border-radius:12px;background:#171b21;border:1px solid #343b46}
+.memory-mode-info{font-size:.85rem;color:var(--muted)}
+.memory-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
+.memory-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+.memory-actions{display:flex;gap:8px;flex-wrap:wrap}
+.memory-actions button{width:auto}
+@media(max-width:700px){.memory-tool{padding:14px}.memory-fretboard{min-width:880px}.memory-cell{height:44px}.memory-note-input{width:38px;height:31px}}
+
 </style>
 </head>
+
+<!--
+ACADEMIA — REGRAS PEDAGÓGICAS 4.1
+1. Assumir zero conhecimento musical.
+2. Explicar antes de testar.
+3. Nunca cobrar conteúdo ainda não ensinado.
+4. Uma pergunta = uma tarefa.
+5. Instruções de exercício devem ser curtas e literais.
+6. Sessão Rápida/Normal/Intensiva muda repetição, não o conteúdo essencial.
+7. "Aprofundar" é opcional e não vira pré-requisito.
+8. Aprender > observar > prática guiada > prática sem ajuda > revisão.
+9. Repetir de formas diferentes, não apenas multiplicar perguntas idênticas.
+10. Som pode ser explorado livremente sem valer pontos.
+-->
+
 <body>
 <header><h1>🎸 Braço Interativo da Guitarra</h1><p>Notas, escalas, acordes e treino de ouvido com áudio de guitarra, 24 casas e três afinações.</p></header>
 <div class="app">
@@ -122,7 +209,7 @@
 <div class="control"><label>Timbre</label><select id="tone"><option value="pluck">Guitarra modelada (recomendado)</option><option value="sample">Guitarra clean real (online)</option><option value="triangle">Sintético suave</option><option value="sine">Senoidal</option></select><div id="audioStatus" style="font-size:.72rem;color:var(--muted);margin-top:4px">Áudio local · pronto para tocar</div></div>
 <div class="control"><label>Áudio</label><button id="stop">Parar som</button></div>
 </div><button id="audioTest" style="margin-top:7px">🔊 Testar áudio</button><div style="font-size:.78rem;color:var(--muted);margin:7px 2px 0">O timbre “Guitarra modelada” funciona inteiramente no navegador. “Guitarra clean real” usa samples CC0 do FreePats e depende de conexão externa.</div>
-<div class="tabs"><button class="tab active" data-tab="academy">🎓 Academia</button><button class="tab" data-tab="modules">📚 Módulos</button><button class="tab" data-tab="alternate">🔧 Afinações</button><button class="tab" data-tab="slideguitar">🛝 Slide Guitar</button><button class="tab" data-tab="notes">⚡ Consulta rápida</button><button class="tab" data-tab="scales">Escalas</button><button class="tab" data-tab="chords">Acordes</button><button class="tab" data-tab="training">🎯 Treino</button></div>
+<div class="tabs"><button class="tab active" data-tab="academy">🎓 Academia</button><button class="tab" data-tab="modules">📚 Módulos</button><button class="tab" data-tab="alternate">🔧 Afinações</button><button class="tab" data-tab="slideguitar">🛝 Slide Guitar</button><button class="tab" data-tab="notes">⚡ Consulta rápida</button><button class="tab" data-tab="scales">Escalas</button><button class="tab" data-tab="chords">Acordes</button><button class="tab" data-tab="training">🎯 Treino</button><button class="tab" data-tab="memorytool">🧠 Memorização</button></div>
 
 <section id="academy" class="panel active">
   <div class="academy-hero">
@@ -277,9 +364,9 @@
     <div class="control"><label>Exercício</label>
       <select id="trainMode">
         <optgroup label="Braço da guitarra">
-          <option value="identify">Qual é esta nota?</option>
-          <option value="find">Encontre a nota no braço</option>
-          <option value="findall">Encontre todas as ocorrências</option>
+          <option value="identify">Qual é o nome desta nota?</option>
+          <option value="find">Toque na nota pedida. no braço</option>
+          <option value="findall">Toque em todas as posições da nota pedida. as ocorrências</option>
           <option value="speed">Desafio de 60 segundos</option>
         </optgroup>
         <optgroup label="Percepção auditiva">
@@ -501,6 +588,192 @@ function voices(){let r=+$("#chordRoot").value||0,c=C[$("#chordType").value],vs=
 async function playScale(){let r=+$("#scaleRoot").value||0,s=S[$("#scaleType").value];stop();let base=60+r;if($("#tone").value==="sample"){let ms=s.i.concat([12]).map(x=>base+x);await Promise.all([...new Map(ms.map(m=>{let a=nearestAnchor(m);return[a.f,a]})).values()].map(a=>loadSample(a).catch(()=>null)))}s.i.concat([12]).forEach((x,i)=>play(base+x,1.25,i*.36,.09))}
 
 
+
+// ===== ACADEMIA 4.1: LIÇÃO 1 + DURAÇÃO + APROFUNDAMENTO =====
+const NATURAL_PCS=[0,2,4,5,7,9,11];
+const NATURAL_NAMES=["Dó","Ré","Mi","Fá","Sol","Lá","Si"];
+const DURATION_CONFIG={
+ short:{label:"Rápida",time:"~5 min",rounds:8,desc:"Essencial + prática suficiente para continuar."},
+ medium:{label:"Normal",time:"~10–15 min",rounds:16,desc:"Equilíbrio entre explicação, prática e revisão."},
+ long:{label:"Intensiva",time:"~20–30 min",rounds:28,desc:"Mais repetição e variações para automatizar."}
+};
+let naturalLessonStep=0,naturalLessonRound=0,naturalLessonScore=0,naturalModeBlock=0;
+let naturalLessonRounds=DURATION_CONFIG[(AG.lessonDuration||"medium")]?.rounds||16;
+
+function academyDuration(){
+ return AG.lessonDuration||"medium";
+}
+function setAcademyDuration(v){
+ AG.lessonDuration=v; saveAG();
+ naturalLessonRounds=DURATION_CONFIG[v].rounds;
+ document.querySelectorAll("[data-duration]").forEach(b=>b.classList.toggle("active",b.dataset.duration===v));
+ const h=$("#durationHelp"); if(h)h.textContent=DURATION_CONFIG[v].desc;
+}
+function durationPicker(){
+ const cur=academyDuration(),c=DURATION_CONFIG[cur];
+ return `<div class="academy-prefs">
+   <div class="academy-prefs-title">Quanto você quer praticar nesta sessão?</div>
+   <div class="duration-pills">
+    ${Object.entries(DURATION_CONFIG).map(([k,v])=>`<button data-duration="${k}" class="${cur===k?'active':''}">${v.label}<br><small>${v.time}</small></button>`).join("")}
+   </div>
+   <div class="duration-help" id="durationHelp">${c.desc}<br><b>O conteúdo é o mesmo.</b> Só muda a quantidade de prática e revisão.</div>
+ </div>`;
+}
+function wireDuration(){
+ document.querySelectorAll("[data-duration]").forEach(b=>b.onclick=()=>setAcademyDuration(b.dataset.duration));
+}
+function naturalStrip(highlight=-1){
+ return `<div class="natural-order">${NATURAL_NAMES.map((n,i)=>`${i?'<span class="order-arrow">→</span>':''}<button class="natural-note" data-natural-hear="${NATURAL_PCS[i]}" style="${i===highlight?'border-color:#d6a640;box-shadow:0 0 0 2px #d6a64055':''}">🔊 ${n}<small>ouvir</small></button>`).join("")}</div>`;
+}
+function wireNaturalHear(){
+ document.querySelectorAll("[data-natural-hear]").forEach(b=>b.onpointerdown=e=>{e.preventDefault();play(60+(+b.dataset.naturalHear),.95,0,.12)});
+}
+function deepenNatural(){
+ return `<div class="deepen-box"><details><summary>＋ Aprofundar: por que essa ordem importa?</summary>
+ <div class="deep-body">
+ <p>Esses sete nomes — <b>Dó, Ré, Mi, Fá, Sol, Lá e Si</b> — são os nomes das <b>notas naturais</b>. Você ainda não precisa entender sustenidos, bemóis, escalas ou acordes.</p>
+ <p>A ideia importante agora é que a sequência é <b>cíclica</b>: depois de Si, voltamos a Dó. Mais tarde você verá essa mesma lógica se repetindo no braço da guitarra e ela será uma referência para localizar notas, construir acordes e compreender escalas.</p>
+ <p><b>Não tente aprender tudo isso agora.</b> Nesta lição, basta sair sabendo a ordem das sete notas naturais.</p>
+ </div></details></div>`;
+}
+function roadmap(stage){
+ const a=["Aprender","Observar","Praticar","Sem ajuda","Revisar"];
+ return `<div class="lesson-roadmap">${a.map((x,i)=>`<span class="${i===stage?'on':''}">${i+1}. ${x}</span>`).join("")}</div>`;
+}
+function naturalProgress(){
+ const p=Math.min(100,Math.round((naturalLessonRound/naturalLessonRounds)*100));
+ return `<div class="lesson-progress"><b>Prática: ${naturalLessonRound}/${naturalLessonRounds}</b><div class="lesson-progress-bar"><i style="width:${p}%"></i></div></div>`;
+}
+function startNaturalLessonExtended(){
+ naturalLessonStep=0;naturalLessonRound=0;naturalLessonScore=0;naturalModeBlock=0;
+ naturalLessonRounds=DURATION_CONFIG[academyDuration()].rounds;
+ renderNaturalLessonExtended();
+}
+function renderNaturalLessonExtended(){
+ AG.lesson=0;
+ if(naturalLessonStep===0){
+   lessonIntro(LESSONS[0],`
+    ${roadmap(0)}
+    <div class="eyebrow">LIÇÃO 1 · COMEÇANDO DO ZERO</div>
+    <h1>A ordem natural das notas</h1>
+    <p>Na música, usamos <b>sete nomes básicos</b> para as notas. Eles aparecem sempre nesta ordem:</p>
+    ${naturalStrip()}
+    <div class="lesson-focus"><strong>🎯 SUA MISSÃO AGORA</strong><br><br>
+    Decore somente esta ordem:<br><br>
+    <b style="font-size:1.25em">Dó → Ré → Mi → Fá → Sol → Lá → Si</b><br><br>
+    Depois de <b>Si</b>, voltamos ao <b>Dó</b> e a sequência começa novamente.</div>
+    <p><b>Você não precisa saber mais nada de música para começar.</b> Não vamos falar de escalas, acordes ou sustenidos ainda. Primeiro construiremos esta referência.</p>
+    ${durationPicker()}
+    ${deepenNatural()}`);
+   $("#gameChoices").innerHTML=`<button id="naturalBegin">Começar →</button>`;
+   $("#naturalBegin").onclick=()=>{naturalLessonStep=1;renderNaturalLessonExtended()};
+   wireNaturalHear();wireDuration(); return;
+ }
+ if(naturalLessonStep===1){
+   lessonIntro(LESSONS[0],`
+    ${roadmap(1)}
+    <div class="eyebrow">OBSERVE E OUÇA</div>
+    <h2>Leia da esquerda para a direita</h2>
+    <p>Toque em cada nota e diga o nome em voz alta. Faça isso pelo menos duas vezes.</p>
+    ${naturalStrip()}
+    <div class="lesson-focus"><strong>A sequência continua:</strong><br><br>
+    Dó → Ré → Mi → Fá → Sol → Lá → Si → <b>Dó → Ré → Mi...</b></div>
+    <div class="lesson-tip">💡 Não tente ser rápido. O objetivo é começar a criar familiaridade com <b>nome + ordem + som</b>.</div>
+    ${deepenNatural()}`);
+   $("#gameChoices").innerHTML=`<button id="naturalPractice">Já percorri a sequência → praticar</button>`;
+   $("#naturalPractice").onclick=()=>{naturalLessonStep=2;naturalLessonRound=0;naturalModeBlock=0;nextNaturalQuestion()};
+   wireNaturalHear(); return;
+ }
+ nextNaturalQuestion();
+}
+function naturalQuestionMode(){
+ // Pedagogical blocks: don't mix formats before the learner understands each task.
+ const r=naturalLessonRound, total=naturalLessonRounds;
+ const q=Math.max(2,Math.floor(total/4));
+ if(r<q)return 0;             // next
+ if(r<q*2)return 1;           // previous
+ if(r<q*3)return 2;           // complete
+ return 3;                    // mixed consolidation, no ear-test requirement
+}
+function nextNaturalQuestion(){
+ if(naturalLessonRound>=naturalLessonRounds){finishNaturalExtended();return}
+ const mode=naturalQuestionMode();
+ const i=Math.floor(Math.random()*7),name=NATURAL_NAMES[i];
+ let command,answer,opts,context="";
+ if(mode===0){
+   answer=NATURAL_NAMES[(i+1)%7];
+   command=`Qual nota vem depois de <b>${name}</b>?`;
+   context="Escolha uma resposta.";
+ }else if(mode===1){
+   answer=NATURAL_NAMES[(i+6)%7];
+   command=`Qual nota vem antes de <b>${name}</b>?`;
+   context="Escolha uma resposta.";
+ }else if(mode===2){
+   const j=Math.floor(Math.random()*5);
+   answer=NATURAL_NAMES[j+2];
+   command=`Qual nota está faltando?`;
+   context=`${NATURAL_NAMES[j]} → ${NATURAL_NAMES[j+1]} → <b>?</b> → ${NATURAL_NAMES[j+3]}`;
+ }else{
+   const types=[0,1,2],m=types[Math.floor(Math.random()*types.length)];
+   if(m===0){answer=NATURAL_NAMES[(i+1)%7];command=`Qual nota vem depois de <b>${name}</b>?`;context="Escolha uma resposta."}
+   else if(m===1){answer=NATURAL_NAMES[(i+6)%7];command=`Qual nota vem antes de <b>${name}</b>?`;context="Escolha uma resposta."}
+   else{const j=Math.floor(Math.random()*5);answer=NATURAL_NAMES[j+2];command="Qual nota está faltando?";context=`${NATURAL_NAMES[j]} → ${NATURAL_NAMES[j+1]} → <b>?</b> → ${NATURAL_NAMES[j+3]}`}
+ }
+ const stage=naturalLessonRound < Math.floor(naturalLessonRounds*.62) ? 2 : 3;
+ opts=[answer];
+ while(opts.length<4){let n=NATURAL_NAMES[Math.floor(Math.random()*7)];if(!opts.includes(n))opts.push(n)}
+ opts.sort(()=>Math.random()-.5);
+ const help=stage===2?`${naturalStrip()}<div class="lesson-tip">A sequência ainda está disponível para consulta. Isso faz parte da prática guiada.</div>`:
+ `<div class="lesson-tip">Agora tente responder <b>sem consultar a sequência</b>. Se errar, tudo bem: ela aparecerá novamente na correção.</div>`;
+ lessonIntro(LESSONS[0],`
+   ${roadmap(stage)}
+   <div class="eyebrow">${stage===2?'PRÁTICA GUIADA':'PRÁTICA SEM AJUDA'}</div>
+   <h2 class="exercise-command">${command}</h2>
+   <p class="exercise-context">${context}</p>
+   ${naturalProgress()}
+   ${help}`);
+ wireNaturalHear();
+ const choices=$("#gameChoices");
+ choices.innerHTML=opts.map(o=>`<button data-natural-answer="${o}">${o}</button>`).join("");
+ document.querySelectorAll("[data-natural-answer]").forEach(b=>b.onclick=()=>{
+   const ok=b.dataset.naturalAnswer===answer;
+   naturalLessonRound++; if(ok)naturalLessonScore++;
+   b.classList.add(ok?"correct":"wrong");
+   if(!ok)document.querySelectorAll("[data-natural-answer]").forEach(x=>{if(x.dataset.naturalAnswer===answer)x.classList.add("correct")});
+   setTimeout(nextNaturalQuestion,500);
+ });
+}
+function finishNaturalExtended(){
+ const pct=Math.round(naturalLessonScore/naturalLessonRounds*100);
+ lessonIntro(LESSONS[0],`
+  ${roadmap(4)}
+  <div class="eyebrow">REVISÃO FINAL</div><h1>Antes de avançar, confira a base.</h1>
+  <p>Seu resultado nesta sessão foi <b>${naturalLessonScore}/${naturalLessonRounds}</b> (${pct}%).</p>
+  <div class="mini-check"><b>1.</b> Tente falar as sete notas naturais sem olhar.<br><br><b>2.</b> Depois confira abaixo.<br><br><b>3.</b> Lembre: depois de Si, a ordem recomeça em Dó.</div>
+  ${naturalStrip()}
+  <div class="lesson-focus"><strong>O que você precisava aprender:</strong><br><br>
+  <b>Dó → Ré → Mi → Fá → Sol → Lá → Si → Dó...</b><br><br>
+  Você continuará revendo essa ordem nas próximas lições. Não esperamos perfeição em uma única sessão.</div>
+  ${deepenNatural()}`);
+ wireNaturalHear();
+ $("#gameChoices").innerHTML=`<button id="repeatNatural">🔁 Praticar novamente</button><button id="completeNatural">Continuar a jornada →</button>`;
+ $("#repeatNatural").onclick=()=>{naturalLessonStep=2;naturalLessonRound=0;naturalLessonScore=0;nextNaturalQuestion()};
+ $("#completeNatural").onclick=()=>{
+   if(!AG.completed.includes(0)){AG.completed.push(0);AG.xp+=LESSONS[0].xp||100;saveAG();toast("Lição concluída! +" +(LESSONS[0].xp||100)+" XP")}
+   renderJourney();
+ };
+}
+
+// Generic pedagogical shell used by the remaining Academy lessons.
+// It adds the same session-duration choice and makes the distinction between
+// essential learning and optional depth explicit without changing prerequisites.
+function academyPedagogyBanner(){
+ return durationPicker()+`<div class="deepen-box"><details><summary>＋ Como funciona esta lição?</summary><div class="deep-body">
+ <p><b>Primeiro ensinamos, depois perguntamos.</b> A sessão escolhida muda apenas a quantidade de prática; nenhum fundamento obrigatório é removido.</p>
+ <p>As perguntas são curtas e pedem uma única ação por vez. Conteúdos adicionais aparecem como aprofundamento opcional.</p>
+ </div></details></div>`;
+}
+
 // ====================== ACADEMIA DO BRAÇO ======================
 // Filosofia: experiência -> associação -> recuperação ativa -> revisão espaçada.
 // O aluno nunca recebe uma pergunta sobre um símbolo/conceito que a trilha ainda não apresentou.
@@ -512,7 +785,7 @@ const RANKS=[
  {n:"Deus da Guitarra",i:"🔥",xp:4500},{n:"Super Deus da Guitarra",i:"🌌",xp:7000}
 ];
 const LESSONS=[
- {id:"first",icon:"👂",title:"Primeiros sons",desc:"Conheça Dó, Ré e Mi pelo nome e pelo ouvido.",need:0,xp:60},
+ {id:"first",icon:"👂",title:"A ordem natural das notas",desc:"Conheça Dó, Ré e Mi pelo nome e pelo ouvido.",need:0,xp:60},
  {id:"seven",icon:"🔤",title:"O alfabeto musical",desc:"Descubra Dó, Ré, Mi, Fá, Sol, Lá e Si.",need:1,xp:70},
  {id:"letters",icon:"🌍",title:"Os dois nomes",desc:"Aprenda que Dó também é C, Ré é D e assim por diante.",need:2,xp:80},
  {id:"strings",icon:"🎸",title:"Conheça a guitarra",desc:"Cordas, casas e os nomes das seis cordas soltas.",need:3,xp:90},
@@ -1030,7 +1303,7 @@ function nextFindAll(){
  renderTrainBoard(true);let [lo,hi]=trainBounds(),target=rnd(allowedPCs()),strings=new Set(trainStringNos()),valid=[];
  $("#fbTraining").querySelectorAll(".note").forEach(b=>{let s=+b.dataset.s,f=+b.dataset.f;if(!b.disabled&&strings.has(s)&&pcAt(s,f)===target)valid.push(`${s}-${f}`)});
  train.q={p:target,valid:new Set(valid)};train.selected=new Set();train.started=performance.now();train.locked=false;$("#trainAnswers").innerHTML="";$("#trainCheck").style.display="";
- setPrompt("Encontre todas",`Todos os ${nn(target)}`,`Marque todas as ocorrências visíveis e toque em “Conferir seleção”.`);
+ setPrompt("Toque em todas as posições da nota pedida.",`Todos os ${nn(target)}`,`Marque todas as ocorrências visíveis e toque em “Conferir seleção”.`);
  $("#fbTraining").querySelectorAll(".note").forEach(b=>{if(!b.disabled)b.onclick=()=>{let key=`${b.dataset.s}-${b.dataset.f}`;if(train.selected.has(key)){train.selected.delete(key);b.classList.remove("train-picked")}else{train.selected.add(key);b.classList.add("train-picked")}}});
 }
 function checkFindAll(){
@@ -1110,5 +1383,233 @@ $('#resetStats').onclick=()=>{trainStats={correct:0,wrong:0,totalMs:0,timed:0,st
 fillAll();$('#scaleRoot').value='9';$('#chordRoot').value='9';render();trainModeChanged();updateStats();updateAcademyHeader();academyView('journey');renderModules('all');renderQuickNoteButtons();populateAlt();
 })();
 $("#spelling").addEventListener("change",()=>setTimeout(renderQuickNoteButtons,0));
+
+// ===== FERRAMENTA LIVRE: MEMORIZAÇÃO DO BRAÇO =====
+const MEMORY_TUNINGS={
+ standard:[4,9,2,7,11,4], // 6th -> 1st
+ eb:[3,8,1,6,10,3],
+ d:[2,7,0,5,9,2],
+ dropd:[2,9,2,7,11,4],
+ dropc:[0,7,0,5,9,2],
+ dropb:[11,6,11,4,8,1],
+ opend:[2,9,2,6,9,2],
+ opene:[4,11,4,8,11,4],
+ openg:[2,7,2,7,11,2],
+ opena:[4,9,1,4,9,4],
+ dadgad:[2,9,2,7,9,2]
+};
+const PC_PT=["Dó","Dó♯","Ré","Ré♯","Mi","Fá","Fá♯","Sol","Sol♯","Lá","Lá♯","Si"];
+const PC_EN=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+const NATURAL_SET=new Set([0,2,4,5,7,9,11]);
+
+function memoryNorm(s){
+  return (s||"").trim().toLowerCase()
+   .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+   .replaceAll("♯","#").replaceAll("♭","b")
+   .replace(/\s+/g,"");
+}
+function memoryAliases(pc){
+ const pt=PC_PT[pc], en=PC_EN[pc];
+ const aliases=[pt,en];
+ const flats={1:["Db","Réb"],3:["Eb","Mib"],6:["Gb","Solb"],8:["Ab","Láb"],10:["Bb","Sib"]};
+ if(flats[pc])aliases.push(...flats[pc]);
+ return aliases.map(memoryNorm);
+}
+function memoryCorrect(pc,val){return memoryAliases(pc).includes(memoryNorm(val))}
+
+function memoryInitCustomTuning(){
+ const opts=PC_EN.map((n,i)=>`<option value="${i}">${n}</option>`).join("");
+ const defaults=[4,9,2,7,11,4];
+ document.querySelectorAll(".memory-custom-note").forEach((s,i)=>{
+   s.innerHTML=opts;
+   s.value=defaults[i];
+   s.onchange=memoryBuild;
+ });
+}
+function memoryGetCustomTuning(){
+ const els=[...document.querySelectorAll(".memory-custom-note")];
+ return els.length===6 ? els.map(e=>+e.value) : [4,9,2,7,11,4];
+}
+function memoryToggleCustomTuning(){
+ const key=document.getElementById("memoryTuning")?.value||"standard";
+ const box=document.getElementById("memoryCustomTuning");
+ if(box)box.style.display=key==="custom"?"":"none";
+}
+
+function memoryBuild(){
+ const board=document.getElementById("memoryFretboard"); if(!board)return;
+ const tuningKey=document.getElementById("memoryTuning")?.value||"standard";
+ const tuning=tuningKey==="custom" ? memoryGetCustomTuning() : MEMORY_TUNINGS[tuningKey];
+ const maxF=+(document.getElementById("memoryFrets")?.value||12);
+ const mode=document.getElementById("memoryMode")?.value||"natural";
+ board.innerHTML="";
+ tuning.forEach((openPC,stringIndex)=>{
+   const row=document.createElement("div"); row.className="memory-string";
+   const lab=document.createElement("div"); lab.className="memory-string-label";
+   lab.textContent=`${6-stringIndex}ª corda`;
+   row.appendChild(lab);
+   for(let f=0;f<=maxF;f++){
+      const pc=(openPC+f)%12;
+      const cell=document.createElement("div"); cell.className="memory-cell"+(f===0?" fret0":"");
+      const inp=document.createElement("input");
+      inp.className="memory-note-input";
+      inp.dataset.pc=pc; inp.dataset.fret=f; inp.dataset.string=6-stringIndex;
+      inp.setAttribute("aria-label",`${6-stringIndex}ª corda, casa ${f}`);
+      if(mode==="natural" && !NATURAL_SET.has(pc)){
+        inp.disabled=true; inp.placeholder="·"; inp.style.opacity=".28";
+        inp.title="Neste modo, preencha apenas as notas naturais.";
+      }else{
+        inp.placeholder="?";
+        inp.addEventListener("input",()=>{inp.classList.remove("ok","bad")});
+      }
+      cell.appendChild(inp); row.appendChild(cell);
+   }
+   board.appendChild(row);
+ });
+ const nums=document.createElement("div"); nums.className="memory-fret-nums";
+ nums.innerHTML="<span></span>"+Array.from({length:maxF+1},(_,i)=>`<span>${i===0?"solta":i}</span>`).join("");
+ board.appendChild(nums);
+ memorySetStatus("Preencha as casas que conseguir e clique em <b>Conferir</b>. Você pode deixar espaços em branco.");
+}
+function memorySetStatus(t){const s=document.getElementById("memoryStatus");if(s)s.innerHTML=t}
+function memoryCheck(){
+ const ins=[...document.querySelectorAll("#memoryFretboard .memory-note-input:not(:disabled)")];
+ let filled=0,ok=0;
+ ins.forEach(i=>{i.classList.remove("ok","bad");if(!i.value.trim())return;filled++;const good=memoryCorrect(+i.dataset.pc,i.value);i.classList.add(good?"ok":"bad");if(good)ok++});
+ if(!filled){memorySetStatus("Preencha pelo menos uma nota antes de conferir.");return}
+ const pct=Math.round(ok/filled*100);
+ memorySetStatus(`<b>${ok}/${filled}</b> preenchimentos corretos (${pct}%). Casas em branco não contam como erro.`);
+}
+function memoryReveal(){
+ document.querySelectorAll("#memoryFretboard .memory-note-input:not(:disabled)").forEach(i=>{i.value=PC_PT[+i.dataset.pc];i.classList.remove("bad");i.classList.add("ok")});
+ memorySetStatus("Respostas reveladas. Observe o padrão e depois clique em <b>Limpar</b> para tentar novamente.");
+}
+function memoryClear(){
+ document.querySelectorAll("#memoryFretboard .memory-note-input").forEach(i=>{i.value="";i.classList.remove("ok","bad")});
+ memorySetStatus("Braço limpo. Tente novamente sem olhar a colinha.");
+}
+function memoryRandom(){
+ memoryClear();
+ const mode=document.getElementById("memoryMode")?.value||"natural";
+ const enabled=[...document.querySelectorAll("#memoryFretboard .memory-note-input:not(:disabled)")];
+ enabled.forEach(i=>i.style.visibility="visible");
+ // In challenge mode, dim roughly half the cells visually so user focuses on a subset.
+ enabled.forEach((i,idx)=>{ if(Math.random()<.48){i.style.visibility="hidden"} });
+ memorySetStatus("🎲 Novo desafio: preencha apenas as casas visíveis. Para voltar ao braço completo, altere qualquer opção ou clique em Limpar.");
+}
+function memoryWire(){
+ const b=document.getElementById("memoryFretboard"); if(!b)return;
+ ["memoryTuning","memoryFrets","memoryMode"].forEach(id=>{
+   const e=document.getElementById(id); if(e)e.onchange=()=>{
+     if(id==="memoryTuning")memoryToggleCustomTuning();
+     memoryBuild();
+   };
+ });
+ const c=document.getElementById("memoryCheck"); if(c)c.onclick=memoryCheck;
+ const r=document.getElementById("memoryReveal"); if(r)r.onclick=memoryReveal;
+ const cl=document.getElementById("memoryClear"); if(cl)cl.onclick=()=>{document.querySelectorAll("#memoryFretboard .memory-note-input").forEach(i=>i.style.visibility="visible");memoryClear()};
+ const rnd=document.getElementById("memoryRandom"); if(rnd)rnd.onclick=memoryRandom;
+ const cb=document.getElementById("memoryCheatBtn");
+ const ch=document.getElementById("memoryCheat");
+ if(cb&&ch)cb.onclick=()=>{ch.classList.toggle("hidden");cb.textContent=ch.classList.contains("hidden")?"👀 Mostrar colinha":"🙈 Esconder colinha"};
+ memoryInitCustomTuning();
+ memoryToggleCustomTuning();
+ memoryBuild();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",memoryWire); else memoryWire();
+
+
+document.addEventListener("click",e=>{
+ const btn=e.target.closest('[data-tab="memorytool"]'); if(!btn)return;
+ document.querySelectorAll(".tab-panel").forEach(p=>p.style.display="none");
+ const panel=document.getElementById("memorytool"); if(panel)panel.style.display="";
+ document.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+});
+
 </script>
+
+<section id="memorytool" class="tab-panel" style="display:none">
+  <div class="memory-tool">
+    <div class="eyebrow">FERRAMENTA LIVRE · FORA DA TRILHA</div>
+    <h1>🧠 Memorização do braço</h1>
+    <p>Preencha um braço de guitarra vazio para treinar a localização das notas sem precisar estar com o instrumento por perto. Você pode praticar na afinação normal ou em várias afinações alternativas.</p>
+
+    <div class="memory-toolbar">
+      <label>Afinação
+        <select id="memoryTuning">
+          <option value="standard">Afinação normal — Standard (E A D G B E)</option>
+          <option value="eb">Eb Standard — Eb Ab Db Gb Bb Eb</option>
+          <option value="d">D Standard — D G C F A D</option>
+          <option value="dropd">Drop D — D A D G B E</option>
+          <option value="dropc">Drop C — C G C F A D</option>
+          <option value="dropb">Drop B — B F# B E G# C#</option>
+          <option value="opend">Open D — D A D F# A D</option>
+          <option value="opene">Open E — E B E G# B E</option>
+          <option value="openg">Open G — D G D G B D</option>
+          <option value="opena">Open A — E A C# E A E</option>
+          <option value="dadgad">DADGAD — D A D G A D</option>
+          <option value="custom">Personalizada</option>
+        </select>
+      </label>
+      <label>Casas
+        <select id="memoryFrets">
+          <option value="5">0–5</option>
+          <option value="7">0–7</option>
+          <option value="12" selected>0–12</option>
+        </select>
+      </label>
+      <label>Modo
+        <select id="memoryMode">
+          <option value="natural">Somente notas naturais</option>
+          <option value="chromatic">Todas as notas</option>
+        </select>
+      </label>
+      <button id="memoryCheatBtn">👀 Mostrar colinha</button>
+    </div>
+
+
+    <div id="memoryCustomTuning" class="academy-prefs" style="display:none">
+      <div class="academy-prefs-title">Afinação personalizada · 6ª → 1ª corda</div>
+      <div class="duration-pills" style="align-items:end">
+        <label>6ª <select class="memory-custom-note"></select></label>
+        <label>5ª <select class="memory-custom-note"></select></label>
+        <label>4ª <select class="memory-custom-note"></select></label>
+        <label>3ª <select class="memory-custom-note"></select></label>
+        <label>2ª <select class="memory-custom-note"></select></label>
+        <label>1ª <select class="memory-custom-note"></select></label>
+      </div>
+      <div class="duration-help">Escolha a nota solta de cada corda. O braço será recalculado automaticamente.</div>
+    </div>
+
+    <div id="memoryCheat" class="memory-cheat hidden">
+      <b>Colinha — ordem das notas naturais</b><br><br>
+      <span style="font-size:1.08rem;font-weight:850">Dó → Ré → Mi → Fá → Sol → Lá → Si → Dó...</span>
+      <div class="memory-mode-info" style="margin-top:8px">Em letras: C → D → E → F → G → A → B → C...</div>
+    </div>
+
+    <div class="memory-actions">
+      <button id="memoryCheck">✓ Conferir</button>
+      <button id="memoryReveal">💡 Revelar respostas</button>
+      <button id="memoryClear">↺ Limpar</button>
+      <button id="memoryRandom">🎲 Novo desafio</button>
+    </div>
+
+    <div id="memoryStatus" class="memory-status">
+      Preencha as casas que conseguir e clique em <b>Conferir</b>. Você pode deixar espaços em branco.
+    </div>
+
+    <div class="memory-fretboard-wrap">
+      <div id="memoryFretboard" class="memory-fretboard"></div>
+    </div>
+
+    <div class="memory-legend">
+      <span><span class="memory-dot" style="background:#4aa96c"></span>correto</span>
+      <span><span class="memory-dot" style="background:#c95d5d"></span>incorreto</span>
+      <span>Casas em branco não contam como erro.</span>
+    </div>
+  </div>
+</section>
+
 </body></html>
