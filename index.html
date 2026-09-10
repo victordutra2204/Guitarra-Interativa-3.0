@@ -590,7 +590,7 @@ async function playScale(){let r=+$("#scaleRoot").value||0,s=S[$("#scaleType").v
 
 
 // ===== ACADEMIA 4.1: LIÇÃO 1 + DURAÇÃO + APROFUNDAMENTO =====
-const NATURAL_PCS=[0,2,4,5,7,9,11];
+const ACADEMY_NATURAL_PCS=[0,2,4,5,7,9,11];
 const NATURAL_NAMES=["Dó","Ré","Mi","Fá","Sol","Lá","Si"];
 const DURATION_CONFIG={
  short:{label:"Rápida",time:"~5 min",rounds:8,desc:"Essencial + prática suficiente para continuar."},
@@ -623,7 +623,7 @@ function wireDuration(){
  document.querySelectorAll("[data-duration]").forEach(b=>b.onclick=()=>setAcademyDuration(b.dataset.duration));
 }
 function naturalStrip(highlight=-1){
- return `<div class="natural-order">${NATURAL_NAMES.map((n,i)=>`${i?'<span class="order-arrow">→</span>':''}<button class="natural-note" data-natural-hear="${NATURAL_PCS[i]}" style="${i===highlight?'border-color:#d6a640;box-shadow:0 0 0 2px #d6a64055':''}">🔊 ${n}<small>ouvir</small></button>`).join("")}</div>`;
+ return `<div class="natural-order">${NATURAL_NAMES.map((n,i)=>`${i?'<span class="order-arrow">→</span>':''}<button class="natural-note" data-natural-hear="${ACADEMY_NATURAL_PCS[i]}" style="${i===highlight?'border-color:#d6a640;box-shadow:0 0 0 2px #d6a64055':''}">🔊 ${n}<small>ouvir</small></button>`).join("")}</div>`;
 }
 function wireNaturalHear(){
  document.querySelectorAll("[data-natural-hear]").forEach(b=>b.onpointerdown=e=>{e.preventDefault();play(60+(+b.dataset.naturalHear),.95,0,.12)});
