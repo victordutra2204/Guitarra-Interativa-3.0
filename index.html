@@ -183,6 +183,32 @@
 .memory-actions button{width:auto}
 @media(max-width:700px){.memory-tool{padding:14px}.memory-fretboard{min-width:880px}.memory-cell{height:44px}.memory-note-input{width:38px;height:31px}}
 
+
+/* ===== AFINADOR CROMÁTICO ===== */
+.tuner-tool{max-width:980px;margin:0 auto;padding:22px}
+.tuner-card{margin:20px auto;padding:24px;border:1px solid #343b46;border-radius:18px;background:#15191f;text-align:center;max-width:780px}
+.tuner-note{font-size:clamp(4.2rem,12vw,7.8rem);font-weight:950;line-height:.9;letter-spacing:-.05em;margin:12px 0 4px}
+.tuner-frequency{font-size:1rem;color:var(--muted);margin-bottom:18px}
+.tuner-target{font-size:.9rem;color:#d9dde4;margin:8px 0}
+.tuner-meter{position:relative;height:72px;margin:18px auto 10px;max-width:650px}
+.tuner-track{position:absolute;left:0;right:0;top:31px;height:8px;border-radius:99px;background:linear-gradient(90deg,#8c3838 0%,#b88838 35%,#3e875b 48%,#3e875b 52%,#b88838 65%,#8c3838 100%)}
+.tuner-center{position:absolute;left:50%;top:18px;width:2px;height:34px;background:#f5f5f5;transform:translateX(-1px);opacity:.95}
+.tuner-needle{position:absolute;left:50%;top:20px;width:4px;height:30px;border-radius:5px;background:#fff;transform:translateX(-50%);transition:left .08s linear}
+.tuner-cents-row{display:flex;justify-content:space-between;color:var(--muted);font-size:.72rem;margin-top:2px}
+.tuner-status{font-size:1.18rem;font-weight:850;margin:14px 0 4px;min-height:1.5em}
+.tuner-status.good{color:#65bd83}
+.tuner-status.low{color:#e2b254}
+.tuner-status.high{color:#e2b254}
+.tuner-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0}
+.tuner-controls button,.tuner-controls select{width:auto}
+.tuner-string-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:680px;margin:14px auto}
+.tuner-string-grid button{padding:12px 8px;font-size:.85rem}
+.tuner-string-grid button.active{border-color:#d6a640;box-shadow:0 0 0 2px #d6a64044;background:#262116}
+.tuner-help{max-width:800px;margin:18px auto;text-align:left;line-height:1.6;color:#d7dce3}
+.tuner-permission{max-width:800px;margin:12px auto;padding:12px 14px;border-radius:12px;background:#171b21;border:1px solid #343b46;font-size:.88rem;color:var(--muted)}
+.tuner-signal{font-size:.78rem;color:var(--muted);margin-top:8px}
+@media(max-width:700px){.tuner-tool{padding:14px}.tuner-card{padding:18px 12px}.tuner-string-grid{grid-template-columns:repeat(3,1fr)}}
+
 </style>
 </head>
 
@@ -209,7 +235,7 @@ ACADEMIA — REGRAS PEDAGÓGICAS 4.1
 <div class="control"><label>Timbre</label><select id="tone"><option value="pluck">Guitarra modelada (recomendado)</option><option value="sample">Guitarra clean real (online)</option><option value="triangle">Sintético suave</option><option value="sine">Senoidal</option></select><div id="audioStatus" style="font-size:.72rem;color:var(--muted);margin-top:4px">Áudio local · pronto para tocar</div></div>
 <div class="control"><label>Áudio</label><button id="stop">Parar som</button></div>
 </div><button id="audioTest" style="margin-top:7px">🔊 Testar áudio</button><div style="font-size:.78rem;color:var(--muted);margin:7px 2px 0">O timbre “Guitarra modelada” funciona inteiramente no navegador. “Guitarra clean real” usa samples CC0 do FreePats e depende de conexão externa.</div>
-<div class="tabs"><button class="tab active" data-tab="academy">🎓 Academia</button><button class="tab" data-tab="modules">📚 Módulos</button><button class="tab" data-tab="alternate">🔧 Afinações</button><button class="tab" data-tab="slideguitar">🛝 Slide Guitar</button><button class="tab" data-tab="notes">⚡ Consulta rápida</button><button class="tab" data-tab="scales">Escalas</button><button class="tab" data-tab="chords">Acordes</button><button class="tab" data-tab="training">🎯 Treino</button><button class="tab" data-tab="memorytool">🧠 Memorização</button></div>
+<div class="tabs"><button class="tab active" data-tab="academy">🎓 Academia</button><button class="tab" data-tab="modules">📚 Módulos</button><button class="tab" data-tab="alternate">🔧 Afinações</button><button class="tab" data-tab="slideguitar">🛝 Slide Guitar</button><button class="tab" data-tab="notes">⚡ Consulta rápida</button><button class="tab" data-tab="scales">Escalas</button><button class="tab" data-tab="chords">Acordes</button><button class="tab" data-tab="training">🎯 Treino</button><button class="tab" data-tab="memorytool">🧠 Memorização</button><button class="tab" data-tab="tuner">🎛️ Afinador</button></div>
 
 <section id="academy" class="panel active">
   <div class="academy-hero">
@@ -1516,6 +1542,200 @@ function memoryWire(){
  memoryBuild();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",memoryWire); else memoryWire();
+
+// ====================== AFINADOR CROMÁTICO ======================
+let tunerStream=null,tunerSource=null,tunerAnalyser=null,tunerRAF=0,tunerRunning=false,tunerSelectedMidi=null;
+const TUNER_PRESETS={
+ standard:[40,45,50,55,59,64],
+ eb:[39,44,49,54,58,63],
+ d:[38,43,48,53,57,62],
+ dropd:[38,45,50,55,59,64],
+ dropc:[36,43,48,53,57,62],
+ dropb:[35,42,47,52,56,61],
+ opend:[38,45,50,54,57,62],
+ opene:[40,47,52,56,59,64],
+ openg:[38,43,50,55,59,62],
+ dadgad:[38,45,50,55,57,62]
+};
+const TUNER_NAMES_FLAT=["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"];
+const TUNER_NAMES_SHARP=["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+
+function tunerA4(){
+ const s=$("#tunerA4");
+ if(!s)return 440;
+ if(s.value==="custom")return Math.min(480,Math.max(400,parseFloat($("#tunerA4Custom").value)||440));
+ return +s.value;
+}
+function tunerFreqForMidi(m){return tunerA4()*Math.pow(2,(m-69)/12)}
+function tunerMidiFromFreq(f){return 69+12*Math.log2(f/tunerA4())}
+function tunerNoteName(m){
+ const useFlats=["eb","dropb","opend"].includes($("#tunerPreset")?.value);
+ return (useFlats?TUNER_NAMES_FLAT:TUNER_NAMES_SHARP)[((Math.round(m)%12)+12)%12];
+}
+function tunerRenderStrings(){
+ const p=$("#tunerPreset"),box=$("#tunerStrings"); if(!p||!box)return;
+ const arr=TUNER_PRESETS[p.value];
+ tunerSelectedMidi=null;
+ if(!arr){box.style.display="none";box.innerHTML="";$("#tunerTarget").textContent="Cromático — nota mais próxima";return}
+ box.style.display="grid";
+ box.innerHTML=arr.map((m,i)=>`<button data-tuner-midi="${m}">${6-i}ª<br><b>${tunerNoteName(m)}</b></button>`).join("");
+ box.querySelectorAll("button").forEach(b=>b.onclick=()=>{
+   const m=+b.dataset.tunerMidi;
+   tunerSelectedMidi=(tunerSelectedMidi===m?null:m);
+   box.querySelectorAll("button").forEach(x=>x.classList.toggle("active",+x.dataset.tunerMidi===tunerSelectedMidi));
+   $("#tunerTarget").textContent=tunerSelectedMidi===null?"Afinação selecionada — detecção automática":`Alvo: ${tunerNoteName(tunerSelectedMidi)} · ${tunerFreqForMidi(tunerSelectedMidi).toFixed(2)} Hz`;
+ });
+ $("#tunerTarget").textContent="Afinação selecionada — toque qualquer uma das 6 cordas";
+}
+function tunerClosestPresetMidi(freq){
+ const arr=TUNER_PRESETS[$("#tunerPreset")?.value];
+ if(!arr)return Math.round(tunerMidiFromFreq(freq));
+ if(tunerSelectedMidi!==null)return tunerSelectedMidi;
+ return arr.reduce((best,m)=>Math.abs(1200*Math.log2(freq/tunerFreqForMidi(m)))<Math.abs(1200*Math.log2(freq/tunerFreqForMidi(best)))?m:best,arr[0]);
+}
+
+// YIN pitch detector: robust fundamental estimation for monophonic instrument notes.
+function tunerYIN(buf,sampleRate){
+ const size=buf.length;
+ let rms=0;
+ for(let i=0;i<size;i++)rms+=buf[i]*buf[i];
+ rms=Math.sqrt(rms/size);
+ if(rms<0.008)return {freq:null,rms};
+
+ // Guitar-focused lag range: about 60 Hz–1.3 kHz. Covers low B through high fretted notes.
+ const minTau=Math.max(2,Math.floor(sampleRate/1300));
+ const maxTau=Math.min(Math.floor(sampleRate/55),Math.floor(size/2)-1);
+ const yin=new Float32Array(maxTau+1);
+ for(let tau=1;tau<=maxTau;tau++){
+   let sum=0;
+   for(let i=0;i<maxTau;i++){
+     const d=buf[i]-buf[i+tau]; sum+=d*d;
+   }
+   yin[tau]=sum;
+ }
+ let running=0;
+ yin[0]=1;
+ for(let tau=1;tau<=maxTau;tau++){
+   running+=yin[tau];
+   yin[tau]=running?yin[tau]*tau/running:1;
+ }
+ const threshold=0.12;
+ let tauEstimate=-1;
+ for(let tau=minTau;tau<=maxTau;tau++){
+   if(yin[tau]<threshold){
+     while(tau+1<=maxTau && yin[tau+1]<yin[tau])tau++;
+     tauEstimate=tau;break;
+   }
+ }
+ if(tauEstimate<0){
+   let best=minTau;
+   for(let tau=minTau+1;tau<=maxTau;tau++)if(yin[tau]<yin[best])best=tau;
+   if(yin[best]>.25)return {freq:null,rms};
+   tauEstimate=best;
+ }
+ // Parabolic interpolation around YIN minimum.
+ let better=tauEstimate;
+ if(tauEstimate>1 && tauEstimate<maxTau){
+   const s0=yin[tauEstimate-1],s1=yin[tauEstimate],s2=yin[tauEstimate+1];
+   const denom=2*(2*s1-s2-s0);
+   if(Math.abs(denom)>1e-9)better=tauEstimate+(s2-s0)/denom;
+ }
+ return {freq:sampleRate/better,rms};
+}
+
+let tunerSmooth=[];
+function tunerUpdateDisplay(freq,rms){
+ if(!freq || !isFinite(freq)){
+   $("#tunerFrequency").textContent="aguardando uma nota estável";
+   $("#tunerSignal").textContent=rms<.008?"Sinal muito baixo — toque uma corda.":"Sinal detectado, estabilizando…";
+   return;
+ }
+ tunerSmooth.push(freq); if(tunerSmooth.length>5)tunerSmooth.shift();
+ const sorted=[...tunerSmooth].sort((a,b)=>a-b);
+ freq=sorted[Math.floor(sorted.length/2)];
+
+ const targetMidi=tunerClosestPresetMidi(freq);
+ const targetFreq=tunerFreqForMidi(targetMidi);
+ let cents=1200*Math.log2(freq/targetFreq);
+ // Keep needle meaningful if wrong string/note is far away.
+ const needleCents=Math.max(-50,Math.min(50,cents));
+ const left=50+needleCents;
+ $("#tunerNeedle").style.left=left+"%";
+ $("#tunerNote").textContent=tunerNoteName(targetMidi);
+ $("#tunerFrequency").textContent=`${freq.toFixed(2)} Hz · ${cents>=0?"+":""}${cents.toFixed(1)} cents`;
+
+ const abs=Math.abs(cents),st=$("#tunerStatus");
+ st.className="tuner-status";
+ if(abs<=3){
+   st.textContent="✓ Afinada";
+   st.classList.add("good");
+ }else if(cents<0){
+   st.textContent="↓ Grave — aperte um pouco";
+   st.classList.add("low");
+ }else{
+   st.textContent="↑ Aguda — afrouxe um pouco";
+   st.classList.add("high");
+ }
+ $("#tunerSignal").textContent=abs>50?"Você pode estar tocando outra nota/corda.":"Precisão visual: centro = 0 cents.";
+}
+function tunerLoop(){
+ if(!tunerRunning||!tunerAnalyser)return;
+ const buf=new Float32Array(tunerAnalyser.fftSize);
+ tunerAnalyser.getFloatTimeDomainData(buf);
+ const r=tunerYIN(buf,ac.sampleRate);
+ tunerUpdateDisplay(r.freq,r.rms);
+ tunerRAF=requestAnimationFrame(tunerLoop);
+}
+async function tunerStart(){
+ try{
+   audio();
+   if(!navigator.mediaDevices?.getUserMedia)throw new Error("Microfone não suportado neste navegador.");
+   tunerStream=await navigator.mediaDevices.getUserMedia({
+     audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},
+     video:false
+   });
+   tunerSource=ac.createMediaStreamSource(tunerStream);
+   tunerAnalyser=ac.createAnalyser();
+   tunerAnalyser.fftSize=4096;
+   tunerAnalyser.smoothingTimeConstant=0;
+   tunerSource.connect(tunerAnalyser);
+   tunerRunning=true;tunerSmooth=[];
+   $("#tunerStart").disabled=true;$("#tunerStop").disabled=false;
+   $("#tunerStatus").textContent="Ouvindo…";
+   $("#tunerSignal").textContent="Toque uma corda por vez.";
+   tunerLoop();
+ }catch(err){
+   $("#tunerStatus").textContent="Não consegui acessar o microfone";
+   $("#tunerSignal").textContent="Verifique a permissão do microfone no navegador e tente novamente.";
+   console.error("Tuner microphone:",err);
+ }
+}
+function tunerStop(){
+ tunerRunning=false;
+ if(tunerRAF)cancelAnimationFrame(tunerRAF);
+ if(tunerStream)tunerStream.getTracks().forEach(t=>t.stop());
+ try{tunerSource&&tunerSource.disconnect()}catch(e){}
+ tunerStream=tunerSource=tunerAnalyser=null;tunerSmooth=[];
+ $("#tunerStart").disabled=false;$("#tunerStop").disabled=true;
+ $("#tunerNote").textContent="—";$("#tunerFrequency").textContent="aguardando sinal";
+ $("#tunerNeedle").style.left="50%";
+ $("#tunerStatus").className="tuner-status";$("#tunerStatus").textContent="Microfone desligado";
+}
+function tunerWire(){
+ if(!$("#tunerStart"))return;
+ $("#tunerStart").onclick=tunerStart;
+ $("#tunerStop").onclick=tunerStop;
+ $("#tunerPreset").onchange=tunerRenderStrings;
+ $("#tunerA4").onchange=()=>{
+   const custom=$("#tunerA4").value==="custom";
+   $("#tunerA4Custom").style.display=custom?"":"none";
+   tunerRenderStrings();
+ };
+ $("#tunerA4Custom").oninput=tunerRenderStrings;
+ tunerRenderStrings();
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",tunerWire);else tunerWire();
+
 })();
 </script>
 
@@ -1597,6 +1817,75 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
       <span><span class="memory-dot" style="background:#4aa96c"></span>correto</span>
       <span><span class="memory-dot" style="background:#c95d5d"></span>incorreto</span>
       <span>Casas em branco não contam como erro.</span>
+    </div>
+  </div>
+</section>
+
+
+<section id="tuner" class="panel">
+  <div class="tuner-tool">
+    <div class="eyebrow">FERRAMENTA LIVRE · MICROFONE</div>
+    <h1>🎛️ Afinador cromático</h1>
+    <p>Toque uma corda e o site identifica a nota, a frequência e quantos cents ela está acima ou abaixo da afinação.</p>
+
+    <div class="tuner-controls">
+      <label>Referência A4
+        <select id="tunerA4">
+          <option value="440" selected>440 Hz</option>
+          <option value="442">442 Hz</option>
+          <option value="438">438 Hz</option>
+          <option value="custom">Personalizada</option>
+        </select>
+      </label>
+      <input id="tunerA4Custom" type="number" min="400" max="480" step="0.1" value="440" style="display:none;width:110px" aria-label="Referência A4 personalizada">
+      <label>Afinação-alvo
+        <select id="tunerPreset">
+          <option value="chromatic">Cromático — qualquer nota</option>
+          <option value="standard">Standard — E A D G B E</option>
+          <option value="eb">Eb Standard — Eb Ab Db Gb Bb Eb</option>
+          <option value="d">D Standard — D G C F A D</option>
+          <option value="dropd">Drop D — D A D G B E</option>
+          <option value="dropc">Drop C — C G C F A D</option>
+          <option value="dropb">Drop B — B F# B E G# C#</option>
+          <option value="opend">Open D — D A D F# A D</option>
+          <option value="opene">Open E — E B E G# B E</option>
+          <option value="openg">Open G — D G D G B D</option>
+          <option value="dadgad">DADGAD — D A D G A D</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="tunerStrings" class="tuner-string-grid" style="display:none"></div>
+
+    <div class="tuner-card">
+      <div id="tunerNote" class="tuner-note">—</div>
+      <div id="tunerFrequency" class="tuner-frequency">aguardando sinal</div>
+      <div id="tunerTarget" class="tuner-target">Cromático</div>
+
+      <div class="tuner-meter">
+        <div class="tuner-track"></div>
+        <div class="tuner-center"></div>
+        <div id="tunerNeedle" class="tuner-needle" style="left:50%"></div>
+      </div>
+      <div class="tuner-cents-row"><span>−50</span><span>−25</span><span>0</span><span>+25</span><span>+50</span></div>
+
+      <div id="tunerStatus" class="tuner-status">Microfone desligado</div>
+      <div id="tunerSignal" class="tuner-signal">Toque uma corda por vez e deixe-a soar.</div>
+
+      <div class="tuner-controls">
+        <button id="tunerStart">🎙️ Ativar microfone</button>
+        <button id="tunerStop" disabled>■ Parar</button>
+      </div>
+    </div>
+
+    <div class="tuner-permission">
+      O navegador pedirá permissão para usar o microfone. No GitHub Pages isso funciona por HTTPS. O áudio é analisado no próprio navegador; esta ferramenta não precisa enviar a gravação para um servidor.
+    </div>
+
+    <div class="tuner-help">
+      <b>Como usar:</b> aproxime-se do microfone, toque apenas uma corda e espere a leitura estabilizar. 
+      Se aparecer <b>grave</b>, aperte a corda; se aparecer <b>aguda</b>, afrouxe. Quando ficar próximo de <b>0 cents</b>, a nota está afinada.
+      Para guitarra elétrica, um microfone de celular/notebook funciona melhor com o amplificador em volume moderado ou com a guitarra próxima ao dispositivo.
     </div>
   </div>
 </section>
