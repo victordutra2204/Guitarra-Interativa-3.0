@@ -598,7 +598,7 @@ const DURATION_CONFIG={
  long:{label:"Intensiva",time:"~20–30 min",rounds:28,desc:"Mais repetição e variações para automatizar."}
 };
 let naturalLessonStep=0,naturalLessonRound=0,naturalLessonScore=0,naturalModeBlock=0;
-let naturalLessonRounds=DURATION_CONFIG[(AG.lessonDuration||"medium")]?.rounds||16;
+let naturalLessonRounds=DURATION_CONFIG.medium.rounds;
 
 function academyDuration(){
  return AG.lessonDuration||"medium";
@@ -1381,7 +1381,6 @@ $('#trainNotes').onchange=()=>{if(train.q)startTraining()};
 $('#resetStats').onclick=()=>{trainStats={correct:0,wrong:0,totalMs:0,timed:0,streak:0,best:0,miss:{}};updateStats();feedback("Estatísticas zeradas.")};
 
 fillAll();$('#scaleRoot').value='9';$('#chordRoot').value='9';render();trainModeChanged();updateStats();updateAcademyHeader();academyView('journey');renderModules('all');renderQuickNoteButtons();populateAlt();
-})();
 $("#spelling").addEventListener("change",()=>setTimeout(renderQuickNoteButtons,0));
 
 // ===== FERRAMENTA LIVRE: MEMORIZAÇÃO DO BRAÇO =====
@@ -1517,20 +1516,10 @@ function memoryWire(){
  memoryBuild();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",memoryWire); else memoryWire();
-
-
-document.addEventListener("click",e=>{
- const btn=e.target.closest('[data-tab="memorytool"]'); if(!btn)return;
- document.querySelectorAll(".tab-panel").forEach(p=>p.style.display="none");
- const panel=document.getElementById("memorytool"); if(panel)panel.style.display="";
- document.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
- btn.classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
-});
-
+})();
 </script>
 
-<section id="memorytool" class="tab-panel" style="display:none">
+<section id="memorytool" class="panel">
   <div class="memory-tool">
     <div class="eyebrow">FERRAMENTA LIVRE · FORA DA TRILHA</div>
     <h1>🧠 Memorização do braço</h1>
